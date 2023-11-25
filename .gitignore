@@ -1,4 +1,8 @@
+# Dependencies
+lib
+
 # Compiled class file
+build
 *.class
 
 # Log file

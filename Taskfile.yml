@@ -1,0 +1,23 @@
+# https://taskfile.dev
+
+version: '3'
+
+tasks:
+  repl: java -jar flix.jar repl
+
+  run: java -jar flix.jar run --args "{{.day}}"
+
+  test: java -jar flix.jar test
+
+  new: 
+    silent: true
+    vars: 
+      day_pad:
+        sh: printf "%02d" {{.day}}
+    cmds:
+      - cp ./src/days/Day00.flix ./src/days/Day{{.day_pad}}.flix
+      - grep -l 00 ./src/days/Day{{.day_pad}}.flix | xargs sed -i 's/00/{{.day_pad}}/g'
+      - cp ./test/days/Day00Test.flix ./test/days/Day{{.day_pad}}Test.flix
+      - grep -l 00 ./test/days/Day{{.day_pad}}Test.flix | xargs sed -i 's/00/{{.day_pad}}/g'
+      - touch ./input/Day{{.day_pad}}.txt
+      - echo "Created Day{{.day_pad}}"

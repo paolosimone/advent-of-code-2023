@@ -1,0 +1,9 @@
+[package]
+name        = "advent-of-code-2023"
+description = "Flix Navidad!"
+version     = "0.1.0"
+flix        = "0.41.0"
+authors     = ["paolosimone"]
+
+[mvn-dependencies]
+"de.vandermeer:asciitable" = "0.3.2"
