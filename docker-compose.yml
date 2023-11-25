@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  main:
+    build: .
+    volumes:
+      - ".:/code"
+    working_dir: /code
+    entrypoint: ["bash"]
+    tty: true

@@ -1,0 +1,13 @@
+# https://taskfile.dev
+
+version: '3'
+
+tasks:
+  run: java -jar flix.jar run {{.day}}
+
+  test: |
+    {{if .day}}
+      echo {{.day}}
+    {{else}}
+      java -jar flix.jar test
+    {{end}}
