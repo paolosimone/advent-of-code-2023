@@ -1,11 +1,15 @@
 use std::time::{Duration, Instant};
 use std::{fs::read_to_string, path::Path};
 
-mod day_00;
-
 type DayLoader = fn(&str) -> Box<dyn Day>;
 
-const DAY_LOADERS: &[DayLoader] = &[|input| Box::new(day_00::Day00::load(input))];
+mod day_00;
+mod day_01;
+
+const DAY_LOADERS: &[DayLoader] = &[
+    |input| Box::new(day_00::Day00::load(input)),
+    |input| Box::new(day_01::Day01::load(input)),
+];
 
 pub trait Day {
     fn first_challenge(&self) -> String;
@@ -42,7 +46,7 @@ impl Advent {
     }
 
     pub fn run_all_days(&self) -> Report {
-        (1..=DAY_LOADERS.len())
+        (1..DAY_LOADERS.len())
             .map(|number| self.run_day(number))
             .collect()
     }
